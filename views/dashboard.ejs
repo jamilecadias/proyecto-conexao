@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" href="images/cone1.png">
+    <link rel="stylesheet" href="/css/dashboard.css"> 
+    <link rel="stylesheet" href="static/ass/styles">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/2da8e91210.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<main>
+<section id="section-form">
+    <form class="form">
+        <h1>Registro de usuarios</h1>
+        <div class="container">
+            
+            <div class="input-container">
+            <i class="fas fa-user icon" ></i>
+            <input type="text" placeholder="Nombre completo">
+            </div>
+
+            <div class="input-container">
+            <i class="fa-solid fa-phone icon"></i>
+            <input type="tel" placeholder="Teléfono">
+            </div>
+
+            <div class="input-container">
+            <i class="fas fa-envelope icon"></i>
+            <input type="text" placeholder="Correo electrónico">
+            </div>
+
+            <div class="input-container">
+            <i class="fas fa-key icon"></i>
+            <input type="password" placeholder="Contraseña">
+            </div>
+        
+            <div class="profile-image">Elegí una foto de perfil:</label>
+            <input type="file" name="avatar" id="profile-mage">
+            </div>
+            <br>
+            <div class="buttons">
+             <input type="submit" value="Agregar" class="button"> 
+             <input type="submit" value="Cancelar" class="button">
+            </div>
+        </div>
+    </form>
+</section>
+<section id="section-table">
+    <div class="table-container">
+        <h2>Usuarios registrados</h2>
+        <table>
+            <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Nombre Completo</th>
+                  <th>Teléfono</th>
+                  <th>Correo electrónico</th>
+                  <th>Contraseña</th>
+                  <th>Imagen</th>
+                  <th>Perfil</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyUsers">
+               <tr>
+                  <th><i class="fa-solid fa-user"></i></th>
+                  <th><i class="fa-solid fa-pen"></i></th>
+                  <th><i class="fa-solid fa-trash-can"></i></th>
+                  <th>Emilly Silva</th>
+                  <th>7191594627</th>
+                  <th>emillysilva@gmail.com</th>
+                  <th>emilly123</th>
+                  <th>foto.jpeg</th>
+                  <th>usuario</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</main>
+<script src="/js/index.js"></script>
+</body>
+</html>
