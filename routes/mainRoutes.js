@@ -1,14 +1,11 @@
 const express = require('express');
-
 const router = express.Router();
- 
 const multer = require('multer');
-
 const path = require('path')
-
 const mainController = require('../controllers/mainController')
+const validations = require('../middlewares/validations')
 
-// Multer products
+// Users Multer 
 const storage = multer.diskStorage({
     destination:(req, file, cb)=>{
         cb(null, path.join(__dirname, '../public/images/profile'));
@@ -29,17 +26,13 @@ router.get('/', mainController.index);
 /* router.get('/register', mainController.create); */
 
 router.get('/register', mainController.register);
-
-router.post('/register', upload.single('avatar'), mainController.create);
+router.post('/register', upload.single('avatar'), validations.register, mainController.create);
 
 router.get('/login', mainController.login);
-
-router.post('/login', mainController.create);
+router.post('/login', mainController.processLogin);
 
 router.get('/dashboard', mainController.dashboard);
-
 router.get('/userUpdate', mainController.userUpdate);
-
 router.get('/users', mainController.list);
 
 
