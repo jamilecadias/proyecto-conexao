@@ -1,8 +1,8 @@
 module.exports = {
   "development": {
     "username": "root",
-    "password": 32496217,
-    "database": "conexao",
+    "password": "node root",
+    "database": "conexaobrasil_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
