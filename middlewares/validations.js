@@ -32,7 +32,8 @@ register: [
         body('role')
             .notEmpty().withMessage('Tenes que seleccionar un rol'),
 
-        body('image_url')
+        body('avatar')
+        .notEmpty().withMessage('Tenes que cargar una imagen').bail()
             .custom((value, { req }) => {
                 let file = req.file;
                 let acceptedExtensions = extensions;
@@ -43,7 +44,15 @@ register: [
                     }
                 }
                 return true;
-            })
+            }).bail()
+            .custom((value, { req }) => {
+                let file = req.file.size;
+                const maxSize = 1 * 1024 * 1024;
+                if   (file >= maxSize) {
+                        throw new Error('El tamaño del archivo no puede ser mayor a 1MB');  
+                } 
+                return true;
+            })    
     ]
 }
 

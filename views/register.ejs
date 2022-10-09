@@ -65,7 +65,11 @@
                         <input type="radio" name="role" value="user" id="user">
                         <label for="user">Usuario</label>
                         <input type="radio" name="role" value="admin" id="admin">
-                        <label for="admin">Administrador</label>
+                        <label for="admin">Administrador</label><br>
+                        <small style="color: red;"> <% if (locals.errors && errors.role) { %>
+                            <%= errors.role.msg %>
+                        <% } %> 
+                        </small>
                 </div>
                 <br>
                  <input type="submit" value="Registrate" class="button">
