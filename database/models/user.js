@@ -1,17 +1,17 @@
 /* const sequelize = require("sequelize"); */
 module.exports = (sequelize, dataTypes) => {
-    let alias = "Users";
+    let alias = "User";
     let cols ={
         id: {
             type: dataTypes.INTEGER,
             primaryKey: true, 
             autoIncrement: true
         } ,
-        name: {
+        full_name: {
             type: dataTypes.STRING 
         }, 
 
-        tel: {
+        phone_number: {
             type: dataTypes.INTEGER
         }, 
         
@@ -25,7 +25,10 @@ module.exports = (sequelize, dataTypes) => {
         
         avatar: {
             type: dataTypes.STRING
-        }  
+        },
+        role: {
+            type: dataTypes.STRING
+        }   
 
     };
     let config = {

@@ -1,4 +1,5 @@
-const db = require("../database/models")
+const bcrypt = require('bcryptjs');
+const db = require("../database/models");
 const Op = db.Sequelize.Op;
 const { validationResult } = require('express-validator');
 
@@ -50,8 +51,8 @@ const Controller = {
             full_name: req.body.full_name,
             phone_number: req.body.phone_number,
             email: req.body.email,
-            password: req.body.password,
-            avatar: req.file,
+            password: bcrypt.hashSync(req.body.password, 10),
+            avatar: req.file.filename,
             role: req.body.role,
         })
             .then(function () {
