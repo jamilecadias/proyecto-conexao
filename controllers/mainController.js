@@ -1,3 +1,6 @@
+const db = require("../database/models")
+const Op = db.Sequelize.Op;
+
 const Controller = {
 
     index: (req, res) => {
@@ -12,13 +15,28 @@ const Controller = {
         res.render('register')
     }, 
 
+    create: (req, res)=>{
+        
+        res.send(req.body)
+    }, 
+
     dashboard: (req, res)=>{
         res.render('dashboard')
     }, 
 
     userUpdate: (req, res)=>{
         res.render('userUpdate')
-    }, 
+    },
+    
+    list: (req, res) => {
+        db.User.findAll()
+        .then(users => {
+              res.render("dashboard2",{users:users});
+           })
+           .catch(err => {
+              return res.send(err)
+           })
+     },
 
 
    /*  create: function(req, res) {
