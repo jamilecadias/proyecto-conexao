@@ -1,8 +1,28 @@
 const express = require('express');
 
 const router = express.Router();
+ 
+const multer = require('multer');
+
+const path = require('path')
 
 const mainController = require('../controllers/mainController')
+
+// Multer products
+const storage = multer.diskStorage({
+    destination:(req, file, cb)=>{
+        cb(null, path.join(__dirname, '../public/images/profile'));
+        
+    },
+    filename:(req, file, cb)=>{
+        console.log(file);
+        const newFilename = "" ; + Date.now() + path.extname(file.originalname);
+        cb(null,  newFilename); 
+    }
+
+})
+const upload = multer({ storage : storage });
+
 
 router.get('/', mainController.index);
 
@@ -10,7 +30,7 @@ router.get('/', mainController.index);
 
 router.get('/register', mainController.register);
 
-router.post('/register', mainController.create);
+router.post('/register', upload.single('avatar'), mainController.create);
 
 router.get('/login', mainController.login);
 

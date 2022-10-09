@@ -15,11 +15,6 @@ const Controller = {
         res.render('register')
     }, 
 
-    create: (req, res)=>{
-        
-        res.send(req.body)
-    }, 
-
     dashboard: (req, res)=>{
         res.render('dashboard')
     }, 
@@ -27,7 +22,7 @@ const Controller = {
     userUpdate: (req, res)=>{
         res.render('userUpdate')
     },
-    
+    //Para listar los usuarios
     list: (req, res) => {
         db.User.findAll()
         .then(users => {
@@ -37,6 +32,20 @@ const Controller = {
               return res.send(err)
            })
      },
+     //Para poblar la base de datos con los registrados por formulario
+     create: function (req,res) {
+        db.User.create({
+            full_name: req.body.full_name,
+            phone_number: req.body.phone_number,
+            email: req.body.email,
+            password: req.body.password,
+            // avatar: req.body.avatar,
+            role: req.body.role,
+        })
+            .then(function () {
+                res.redirect('/')
+            })
+    },
 
 
    /*  create: function(req, res) {
