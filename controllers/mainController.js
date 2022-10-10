@@ -23,7 +23,7 @@ const Controller = {
 			})
 		} 	
 
-		/* db.Users.findOne({
+		db.User.findOne({
 			where: {
 				email : req.body.email
 				},
@@ -32,19 +32,20 @@ const Controller = {
 			.then(user => { 
 				if (user){
 					let pass = req.body.password;
-					let correctPassword = bcryptjs.compareSync(pass , user.password);
+					let correctPassword = bcrypt.compareSync(pass , user.password);
 
 					if (correctPassword) {
 					delete user.password; 
 					req.session.userLogged = user;
+                    res.cookie('userEmail' , req.body.email, { maxAge: (1000 * 60) * 3 } ); 
 
-					if(req.body.recordarme) {
+					/* if(req.body.recordarme) {
 						res.cookie('userEmail' , req.body.email, { maxAge: (1000 * 60) * 3 } ); 
-					}
+					} */
 				
 						return res.redirect('/profile')
 					} else {
-						return res.render('./login', {
+						return res.render('login', {
 							errors: {
 								email: {
 									msg: 'Los datos son incorrectos.'
@@ -53,15 +54,30 @@ const Controller = {
 						})
 					}
 				}
-				return res.render('./login', {
+				return res.render('login', {
 					errors: {
 						email: {
 							msg: 'Los datos son incorrectos.'
 						}
 					}
 				})
-			}) */
+			})
 	},
+
+    profile: (req, res)=> {
+
+		db.User.findByPk(req.session.userLogged.id, {raw : true})
+		.then (({id, full_name, email, phone_number, avatar, role}) => {
+			const user = {id, full_name, email, phone_number, avatar, role}
+			res.render('profile',{user})
+		})
+	},
+
+    logout: (req, res) => {
+		res.clearCookie('userEmail'); 
+		req.session.destroy();
+		return res.redirect('/')
+	}, 
 
     register: (req, res)=>{
         res.render('register')
@@ -104,12 +120,21 @@ const Controller = {
             .then(function () {
                 res.redirect('/login')
             })
-        }
+        },
+
+		destroy: (req, res) => {
+			db.User.destroy({
+				where: {id: (req.session.userLogged).id }
+			})
+			   // force: true es para asegurar que se ejecute la acción
+			.then(()=>{
+				res.clearCookie('userEmail'); 
+				req.session.destroy();
+				return res.redirect('/')
+			})
+			.catch(error => res.send(error)) 
+		}
+
         
 }
 module.exports = Controller;
-
-   /*  
-    profile: (req, res)=>{
-        res.render('./profile')
-    }, */

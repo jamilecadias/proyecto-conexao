@@ -4,6 +4,7 @@ const multer = require('multer');
 const path = require('path')
 const mainController = require('../controllers/mainController')
 const validations = require('../middlewares/validations')
+const authMiddleware = require ('../middlewares/authMiddleware'); 
 
 
 // Users Multer 
@@ -36,7 +37,10 @@ router.get('/dashboard', mainController.dashboard);
 router.get('/userUpdate', mainController.userUpdate);
 router.get('/users', mainController.list);
 
+router.get('/profile',authMiddleware, mainController.profile);
+router.get('/logout/', mainController.logout); 
+router.delete('/delete/:id' , mainController.destroy)
 
-/* router.get('/profile', mainController.profile); */
+
 
 module.exports = router;

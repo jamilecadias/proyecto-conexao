@@ -15,8 +15,8 @@ body('password')
     .notEmpty()
     .withMessage('Debe ingresar una contraseña')
     .bail()
-    .isLength(({ min: 8 }))
-    .withMessage('La contraseña debe tener al menos 8 caracteres.'),
+    .isLength(({ min: 6 }))
+    .withMessage('La contraseña debe tener al menos 6 caracteres.'),
 ],
 
 register: [
@@ -42,7 +42,10 @@ register: [
                 return true;
             }), */
         body('password')
-            .trim().notEmpty().withMessage('Tienes que escribir una contraseña'),
+            .trim().notEmpty().withMessage('Tienes que escribir una contraseña')
+            .bail()
+            .isLength(({ min: 6 }))
+            .withMessage('La contraseña debe tener al menos 6 caracteres.'),
 
         body('role')
             .notEmpty().withMessage('Tenes que seleccionar un rol'),
