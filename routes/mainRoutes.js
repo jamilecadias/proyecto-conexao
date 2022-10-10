@@ -34,7 +34,8 @@ router.get('/login', mainController.login);
 router.post('/login', validations.login, mainController.processLogin);
 
 router.get('/dashboard', mainController.dashboard);
-router.get('/userUpdate', mainController.userUpdate);
+router.get('/edit/:id', mainController.edit);
+router.post('/edit/:id',upload.single('avatar'), validations.register,  mainController.update)
 router.get('/users', mainController.list);
 router.post('/users', upload.single('avatar'), validations.register, mainController.createAdmin);
 
@@ -45,5 +46,7 @@ router.delete('/delete/:id' , mainController.delete)
 router.delete('/destroy/:id' , mainController.destroyByID)
 
 
+
+module.exports = router;
 
 module.exports = router;

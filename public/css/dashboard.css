@@ -109,18 +109,17 @@ main {
 .table-container {
     background-color: cadetblue;
     margin-top: 150px;
+    border-radius: 10px;
     
 }
 
 .table-container > table{
-    width: 100%;
-    
+    width: 100%; 
 }
 
 .table-container > table, tr, td, th{
-    border: 1px solid black;
+    border: 1px solid rgb(91, 89, 89);
     border-collapse: collapse;
-    
 }
 
 .table-container > table > thead > tr > th{

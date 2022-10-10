@@ -156,6 +156,43 @@ const Controller = {
 				})
 			},
 
+			edit: (req, res) => {
+				db.User.findByPk(req.params.id)
+				.then(users => {
+					res.render("userUpdate",{users:users});
+				 })
+				 .catch(err => {
+					return res.send(err)
+				 })
+			},
+
+			update: (req, res) => {
+				const resultValidation = validationResult(req);
+        if (resultValidation.errors.length > 0) {
+            return res.render('userUpdate', {
+                errors: resultValidation.mapped(),
+                users: req.body
+            });
+        }
+				db.User.update(
+					{
+						full_name: req.body.full_name,
+						phone_number: req.body.tel,
+						email: req.body.email,
+						password: req.body.password,
+						avatar: req.file.filename,
+						role: req.body.role
+					},
+					{
+					where: {
+						id: req.params.id
+					}, 
+					})
+					.then(()=>{
+						res.redirect('/profile')
+					})
+			},
+
 		delete: (req, res) => {
 			db.User.destroy({
 				where: {id: (req.session.userLogged).id }
@@ -168,6 +205,7 @@ const Controller = {
 			})
 			.catch(error => res.send(error)) 
 		},
+		
 
 		destroyByID: (req, res) => {
 			db.User.destroy({
