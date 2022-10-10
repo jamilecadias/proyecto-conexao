@@ -5,6 +5,7 @@ const path = require('path')
 const mainController = require('../controllers/mainController')
 const validations = require('../middlewares/validations')
 
+
 // Users Multer 
 const storage = multer.diskStorage({
     destination:(req, file, cb)=>{
@@ -29,7 +30,7 @@ router.get('/register', mainController.register);
 router.post('/register', upload.single('avatar'), validations.register, mainController.create);
 
 router.get('/login', mainController.login);
-router.post('/login', mainController.processLogin);
+router.post('/login', validations.login, mainController.processLogin);
 
 router.get('/dashboard', mainController.dashboard);
 router.get('/userUpdate', mainController.userUpdate);

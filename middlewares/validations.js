@@ -3,6 +3,21 @@ const path = require('path');
 const extensions = ['.jpg','.jpeg', '.png', '.gif'];
 
 module.exports = {
+login: [ 
+    body('email')
+    .notEmpty()
+    .withMessage('Este campo debe estar completo.')
+    .bail()
+    .isEmail()
+    .withMessage('Ingresar un email válido'),
+
+body('password')
+    .notEmpty()
+    .withMessage('Debe ingresar una contraseña')
+    .bail()
+    .isLength(({ min: 8 }))
+    .withMessage('La contraseña debe tener al menos 8 caracteres.'),
+],
 
 register: [
         body('full_name')
@@ -33,7 +48,6 @@ register: [
             .notEmpty().withMessage('Tenes que seleccionar un rol'),
 
         body('avatar')
-        .notEmpty().withMessage('Tenes que cargar una imagen').bail()
             .custom((value, { req }) => {
                 let file = req.file;
                 let acceptedExtensions = extensions;

@@ -14,8 +14,54 @@ const Controller = {
     },
 
     processLogin: (req, res) => {
-        return res.send('Ruta por post')
-    },
+
+		const resultValidation = validationResult(req); 
+		if (resultValidation.errors.length > 0){
+			return res.render('login' , {
+				errors : resultValidation.mapped(),
+				oldData: req.body
+			})
+		} 	
+
+		/* db.Users.findOne({
+			where: {
+				email : req.body.email
+				},
+			raw: true
+			})
+			.then(user => { 
+				if (user){
+					let pass = req.body.password;
+					let correctPassword = bcryptjs.compareSync(pass , user.password);
+
+					if (correctPassword) {
+					delete user.password; 
+					req.session.userLogged = user;
+
+					if(req.body.recordarme) {
+						res.cookie('userEmail' , req.body.email, { maxAge: (1000 * 60) * 3 } ); 
+					}
+				
+						return res.redirect('/profile')
+					} else {
+						return res.render('./login', {
+							errors: {
+								email: {
+									msg: 'Los datos son incorrectos.'
+								}
+							}
+						})
+					}
+				}
+				return res.render('./login', {
+					errors: {
+						email: {
+							msg: 'Los datos son incorrectos.'
+						}
+					}
+				})
+			}) */
+	},
 
     register: (req, res)=>{
         res.render('register')
@@ -32,7 +78,7 @@ const Controller = {
     list: (req, res) => {
         db.User.findAll()
         .then(users => {
-              res.render("dashboard2",{users:users});
+              res.render("list",{users:users});
            })
            .catch(err => {
               return res.send(err)
@@ -56,7 +102,7 @@ const Controller = {
             role: req.body.role,
         })
             .then(function () {
-                res.redirect('/')
+                res.redirect('/login')
             })
         }
         

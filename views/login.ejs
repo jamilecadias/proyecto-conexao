@@ -11,20 +11,26 @@
         <script src="https://kit.fontawesome.com/2da8e91210.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <form class="form" action="POST" action="/login">
+        <form class="form" method="POST" action="/login">
 
             <h1>Ingresa</h1>
             <div class="container">
                 
                 <div class="input-container">
                 <i class="fas fa-envelope icon"></i>
-                <input type="text" placeholder="Correo electrónico">
+                <input type="text" name="email" placeholder="Correo electrónico" value = "<%= locals.oldData ? oldData.email : null %>">
                 </div>
+                <% if (locals.errors && errors.email) {%>
+            <small style="color: red ;"><%= errors.email.msg %></small>
+            <% }%>
     
                 <div class="input-container">
                 <i class="fas fa-key icon"></i>
-                <input type="password" placeholder="Contraseña">
+                <input type="password" name="password" placeholder="Contraseña">
                 </div>
+                <% if (locals.errors && errors.password) {%>
+                    <small style="color: red ;"><%= errors.password.msg %></small>
+                    <% }%>
                  <input type="submit" value="Ingresa" class="button">  
                  <br>
                  <br>
