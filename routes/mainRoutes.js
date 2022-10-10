@@ -36,10 +36,13 @@ router.post('/login', validations.login, mainController.processLogin);
 router.get('/dashboard', mainController.dashboard);
 router.get('/userUpdate', mainController.userUpdate);
 router.get('/users', mainController.list);
+router.post('/users', upload.single('avatar'), validations.register, mainController.createAdmin);
 
 router.get('/profile',authMiddleware, mainController.profile);
+router.get('/profile/:id', mainController.profileById);
 router.get('/logout/', mainController.logout); 
-router.delete('/delete/:id' , mainController.destroy)
+router.delete('/delete/:id' , mainController.delete)
+router.delete('/destroy/:id' , mainController.destroyByID)
 
 
 

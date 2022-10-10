@@ -1,45 +1,126 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bienvenidos</title>
-        <link rel="icon" href="images/cone1.png">
-        <link rel="stylesheet" href="css/form.css">
-        <link rel="stylesheet" href="static/ass/styles">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-        <script src="https://kit.fontawesome.com/2da8e91210.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista</title>
+    <link rel="icon" href="images/cone1.png">
+    <link rel="stylesheet" href="/css/dashboard.css"> 
+    <link rel="stylesheet" href="static/ass/styles">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/2da8e91210.js" crossorigin="anonymous"></script>
+</head>
+<body>
 <main>
-    <h1>Bienvenido <%= user.full_name %>!</h1>
+<section id="section-form">
+    <form class="form" method="POST" action="/users" enctype="multipart/form-data">
     
-    <section class="image">
-        <img src="/images/profile/<%=user.avatar%>">
-    </section>
-    
-    <div class = "profileField">
-        <p>Nombre: <%= user.full_name%> </p>
+        <h1>Agregar usuario</h1>
+        <div class="container">
+            
+            <div class="input-container">
+            <i class="fas fa-user icon" ></i>
+            <input type="text" name="full_name" placeholder="Nombre completo" value="<%= locals.oldData ? oldData.full_name : "" %>">
+            </div>
+            <small style="color: red;" > <% if (locals.errors && errors.full_name) { %>
+                <%= errors.full_name.msg %>
+                <% } %>
+            </small>
+            <div class="input-container">
+            <i class="fa-solid fa-phone icon"></i>
+            <input type="tel" name="phone_number" placeholder="Teléfono" value="<%= locals.oldData ? oldData.phone_number : "" %>">
+            </div>
+            <small style="color: red;" > <% if (locals.errors && errors.phone_number) { %>
+                <%= errors.phone_number.msg %>
+                <% } %>
+            </small>
+
+            <div class="input-container">
+            <i class="fas fa-envelope icon"></i>
+            <input type="text" name="email" placeholder="Correo electrónico" value="<%= locals.oldData ? oldData.email : "" %>">
+            </div>
+            <small style="color: red;" > <% if (locals.errors && errors.email) { %>
+                <%= errors.email.msg %>
+                <% } %>
+            </small>
+
+            <div class="input-container">
+            <i class="fas fa-key icon"></i>
+            <input type="password" name="password" placeholder="Contraseña" value="<%= locals.oldData ? oldData.password : "" %>">
+            </div>
+            <small style="color: red;" > <% if (locals.errors && errors.password) { %>
+                <%= errors.password.msg %>
+                <% } %>
+            </small>
+        
+        <div class="profile-image">Elegí una foto de perfil:</label>
+        <input type="file" name="avatar" id="profile-mage" value="<%= locals.oldData ? oldData.avatar : "" %>">
+            </div>
+            <small style="color: red;" > <% if (locals.errors && errors.avatar) { %>
+                <%= errors.avatar.msg %>
+                <% } %>
+            </small>
+            <br>
+            <div class="profile">
+                <h4 class="user_profile">Perfil del usuario</h4>
+                <br>
+                    <input type="radio" name="role" value="user" id="user">
+                    <label for="user">Usuario</label>
+                    <input type="radio" name="role" value="admin" id="admin">
+                    <label for="admin">Administrador</label><br>
+                    <small style="color: red;"> <% if (locals.errors && errors.role) { %>
+                        <%= errors.role.msg %>
+                    <% } %> 
+                    </small>
+            </div>
+            <br>
+             <input type="submit" value="Registrate" class="button">
+             <br>
+             <br>
+           <!--  <p>Al registrarte, aceptas nuestras condiciones de uso y política de privacidad.</p>
+            <p>¿Ya tienes cuenta?<a class="link" href="/login">Iniciar Sesión</a></p>
+          -->
+        </div>
+    </form>
+</section>
+<section id="section-table">
+    <div class="table-container">
+        <h2>Usuarios registrados</h2>
+        <table>
+            <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Nombre Completo</th>
+                  <th>Teléfono</th>
+                  <th>Correo electrónico</th>
+                  <!-- <th>Contraseña</th> -->
+                  <th>Imagen</th>
+                  <th>Perfil</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyUsers">
+               <tr>
+                <% for( let i = 0; i < users.length; i++ ) { %>
+                 <th><a href="/profile/<%= users[i].id %>" class="fa-solid fa-user"></i></th>
+                  <th><i class="fa-solid fa-pen"></i></th>
+                  <th><form action='/destroy/<%= users[i].id %>?_method=DELETE' method="post">
+                    <button type="submit" id="delete-button" class="fa-solid fa-trash-can"></button></form></th>
+                  <th><%= users[i].full_name%></th>
+                  <th><%= users[i].phone_number%></th>
+                  <th><%= users[i].email%></th>
+                  <!-- <th><%= users[i].password%></th> -->
+                  <th><img style="max-width: 30px;" src="images/profile/<%= users[i].avatar%>"</th>
+                  <th><%= users[i].role%></th>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
     </div>
-    <div class = "profileField">
-        <p>Email: <%= user.email%> </p>
-    </div>
-    <div class = "profileField">
-        <p>Teléfono: <%= user.phone_number%> </p>
-    </div>
-    <div>
-        <form action='/logout' method="GET" style="display: inline-flex">
-            <button class="profileButton" type="submit" >Salir</button>
-        </form>
-    </div>
-    <div>
-        <form action='/users/edit/<%= user.id %>' method="get" style="display: inline-flex">
-            <button class="profileButton2" type="submit" >Editar</button>
-        </form>
-        <form action='/delete/<%= user.id %>?_method=DELETE' method="post" style="display: inline-flex">
-            <button class="profileButton2" type="submit" >Eliminar</button>
-        </form>
-    </div> 
+</section>
 </main>
+<!-- <script src="/js/index.js"></script> -->
 </body>
 </html>

@@ -73,6 +73,15 @@ const Controller = {
 		})
 	},
 
+	profileById: (req, res)=> {
+
+		db.User.findByPk(req.params.id, {raw : true})
+		.then (({id, full_name, email, phone_number, avatar, role}) => {
+			const user = {id, full_name, email, phone_number, avatar, role}
+			res.render('profile',{user})
+		})
+	},
+
     logout: (req, res) => {
 		res.clearCookie('userEmail'); 
 		req.session.destroy();
@@ -122,7 +131,32 @@ const Controller = {
             })
         },
 
-		destroy: (req, res) => {
+		createAdmin: function (req,res) {
+			const resultValidation = validationResult(req);
+			if (resultValidation.errors.length > 0) {
+				return res.render('list', {
+					errors: resultValidation.mapped(),
+					oldData: req.body,
+					users: db.User.findAll()
+					.then(users => {
+						  res.render("list",{users:users});
+					   })
+				});
+			}
+			db.User.create({
+				full_name: req.body.full_name,
+				phone_number: req.body.phone_number,
+				email: req.body.email,
+				password: bcrypt.hashSync(req.body.password, 10),
+				avatar: req.file.filename,
+				role: req.body.role,
+			})
+				.then(function () {
+					res.redirect('/users')
+				})
+			},
+
+		delete: (req, res) => {
 			db.User.destroy({
 				where: {id: (req.session.userLogged).id }
 			})
@@ -133,7 +167,20 @@ const Controller = {
 				return res.redirect('/')
 			})
 			.catch(error => res.send(error)) 
-		}
+		},
+
+		destroyByID: (req, res) => {
+			db.User.destroy({
+				where: {id: (req.params.id) }
+			})
+			   // force: true es para asegurar que se ejecute la acción
+			.then(()=>{
+				res.clearCookie('userEmail'); 
+				req.session.destroy();
+				return res.redirect('/users')
+			})
+			.catch(error => res.send(error)) 
+		},
 
         
 }
