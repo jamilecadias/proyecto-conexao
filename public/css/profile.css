@@ -1,0 +1,55 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: cadetblue;
+}
+
+h1 {
+    text-align: center;
+    color: #1a2537;
+}
+
+img  {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    border-radius: 50%;
+    padding: 15px;
+}
+
+div.profileField {
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    font-size: large;
+    font-style: italic;
+    font-weight: 600;
+    }
+
+
+.buttonContainer{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+}
+
+button.profileButton {
+        background: #1a2537;
+        border:0; 
+        font-size: 15px;
+        margin: 15px ;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        font-weight: 500;
+    }
+
+button.profileButton:hover {
+        background: #a7c697;
+        box-shadow: inset2px 2px 2px rgba(0,0,0.2);
+        text-shadow: none;  
+    }
+    
+   
+
