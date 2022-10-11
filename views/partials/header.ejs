@@ -8,11 +8,16 @@
           <img src="images/cone.png" alt="" class="logo">
       </a>
       <ul>
-          <li><a class="active" href="#">Inicio</a></li>
+          <li><a class="active" href="/">Inicio</a></li>
           <li><a href="#">Nosotros</a></li>
           <li><a href="#">Servicios</a></li>
+          <% if (locals.isLogged) { %> 
+            <a href="/users/profile">HOLA <%= locals.userLogged.name %>!</a>
+            <%} else { %> 
           <li><a href="login">Login</a></li>
           <li><a href="register">Registro</a></li>
+
+           <% } %>                  
       </ul>
   </nav>
     </header>

@@ -6,23 +6,26 @@
         <title>Bienvenidos</title>
         <link rel="icon" href="images/cone1.png">
         <link rel="stylesheet" href="css/form.css">
+        <link rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" href="static/ass/styles">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
         <script src="https://kit.fontawesome.com/2da8e91210.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        
+       <%-include('./partials/header.ejs') %>
         <form class="form" method="POST" action="/login">
 
             <h1>Ingresa</h1>
-            <div class="container">
+            <div class="form-container">
                 
                 <div class="input-container">
                 <i class="fas fa-envelope icon"></i>
                 <input type="text" name="email" placeholder="Correo electrónico" value = "<%= locals.oldData ? oldData.email : null %>">
                 </div>
                 <% if (locals.errors && errors.email) {%>
-            <small style="color: red ;"><%= errors.email.msg %></small>
-            <% }%>
+             <small style="color: red ;"><%= errors.email.msg %></small>
+             <% }%>
     
                 <div class="input-container">
                 <i class="fas fa-key icon"></i>
@@ -38,5 +41,6 @@
               
             </div>
         </form>
+       <!--  <%-include('./partials/footer.ejs') %> -->
     </body>
 </html>
