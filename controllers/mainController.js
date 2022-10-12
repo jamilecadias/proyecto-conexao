@@ -177,7 +177,7 @@ const Controller = {
 				db.User.update(
 					{
 						full_name: req.body.full_name,
-						phone_number: req.body.tel,
+						phone_number: req.body.phone_number,
 						email: req.body.email,
 						password: req.body.password,
 						avatar: req.file.filename,

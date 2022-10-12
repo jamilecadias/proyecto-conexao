@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bienvenidos</title>
         <link rel="icon" href="images/cone1.png">
-        <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" href="css/profile.css">
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/profile.css">
         <link rel="stylesheet" href="static/ass/styles">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
         <script src="https://kit.fontawesome.com/2da8e91210.js" crossorigin="anonymous"></script>
@@ -36,7 +36,7 @@
         </form>
     </div>
     <div>
-        <form action='/users/edit/<%= user.id %>' method="get" style="display: inline-flex">
+        <form action='/edit/<%= user.id %>' method="get" style="display: inline-flex">
             <button class="profileButton" type="submit" >Editar</button>
         </form>
         <!-- <form action='/delete/<%= user.id %>?_method=DELETE' method="post" style="display: inline-flex">
