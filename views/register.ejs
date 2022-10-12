@@ -12,7 +12,9 @@
         <script src="https://kit.fontawesome.com/2da8e91210.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        
          <%-include('./partials/header.ejs') %> 
+         <section class="section_register">
         <form class="form" method="POST" action="/register" enctype="multipart/form-data">
     
             <h1>Registrate</h1>
@@ -81,7 +83,10 @@
                 <p>¿Ya tienes cuenta?<a class="link" href="/login">Iniciar Sesión</a></p>
              
             </div>
-        </form>
-        <!-- <%-include('./partials/footer.ejs') %> -->
+        </form> 
+         </section>
+        
+        <%-include('./partials/footer.ejs') %>
+    
     </body>
 </html>

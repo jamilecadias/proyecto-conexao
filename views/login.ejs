@@ -12,8 +12,8 @@
         <script src="https://kit.fontawesome.com/2da8e91210.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        
-       <%-include('./partials/header.ejs') %>
+       <%-include('./partials/header.ejs') %>  
+      <section> 
         <form class="form" method="POST" action="/login">
 
             <h1>Ingresa</h1>
@@ -40,7 +40,9 @@
                 <p>¿No tienes cuenta?<a class="link" href="/register">Registrate</a></p>
               
             </div>
-        </form>
-       <!--  <%-include('./partials/footer.ejs') %> -->
+        </form>  
+      </section>
+       <%-include('./partials/footer.ejs') %>
+  
     </body>
 </html>
