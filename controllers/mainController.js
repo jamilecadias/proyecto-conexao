@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const db = require("../database/models");
 const Op = db.Sequelize.Op;
 const { validationResult } = require('express-validator');
+const fetch = require('node-fetch');
 
 const Controller = {
 
@@ -93,9 +94,22 @@ const Controller = {
     }, 
 
     dashboard: (req, res)=>{
-        res.render('dashboard')
-    }, 
-
+        const total = fetch('http://localhost:3000/api/users')
+        .then(response => response.json())
+        // .then(users => {
+        //  return res.render('dashboardApis',{users})
+        // })
+        const last = fetch('http://localhost:3000/api/users/last')
+        .then(response => response.json())
+        // .then(lastUser => {
+        //  return res.render('dashboardApis',{users,lastUser})
+        // })
+        const allData = Promise.all([total, last]);
+        allData.then(users => {
+            return res.render('dashboardApis',{users})
+        })
+        // allData.then((res) => console.log(res));
+    },
     userUpdate: (req, res)=>{
         res.render('userUpdate')
     },

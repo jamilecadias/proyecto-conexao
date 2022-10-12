@@ -5,6 +5,7 @@ const mainRoutes = require('./routes/mainRoutes');
 const methodOverride =  require('method-override');
 const session = require('express-session');
 const publicPath= path.resolve(__dirname, './public')
+const apiRouter = require('./routes/apiRouter');
 
 app.use(methodOverride('_method'));
 
@@ -29,6 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, '/views')); 
 
 app.use('/', mainRoutes);
+
+app.use('/api', apiRouter);
 
 app.listen(3000, () => {
     console.log('Servidor levantado en el puerto 3000');
