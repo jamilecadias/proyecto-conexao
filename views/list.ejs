@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista</title>
-    <link rel="icon" href="images/cone1.png">
+    <link rel="icon" href="images/conex.png">
     <link rel="stylesheet" href="/css/styles.css"> 
     <link rel="stylesheet" href="/css/dashboard.css"> 
     <link rel="stylesheet" href="static/ass/styles">
@@ -13,24 +13,23 @@
     <script src="https://kit.fontawesome.com/2da8e91210.js" crossorigin="anonymous"></script>
 </head>
 <body>
-   <!--  <header class="header">
+   <header class="header">
         <nav>
           <input type="checkbox" id="check">
           <label for="check" class="checkbtn">
               <i class="fas fa-bars"></i>
           </label>
           <a href="#" class="enlace">
-              <img src="images/cone.png" alt="" class="logo">
+              <img src="images/conex.png" alt="" class="logo">
           </a>
           <ul>
-            <h1 class="dashboard-title">DASHBOARD</h1>
               <li><a class="active" href="/">Inicio</a></li>
               <% if (locals.isLogged) { %> 
                 <a href="/users/profile">HOLA <%= locals.userLogged.name %>!</a>
                <% } %>                  
           </ul>
       </nav>
-        </header> -->
+        </header> 
 <main>
 <section id="section-form">
     <form class="form" method="POST" action="/users" enctype="multipart/form-data">
@@ -141,6 +140,10 @@
     </div>
 </section>
 </main>
-<!-- <script src="/js/index.js"></script> -->
+<!-- <div class="footer-bottom">
+    <center>
+        <div><span>Copyright 2022 © Todos los derechos reservados | Desarrollado por JCD</a></span></div>
+    </center> -->
+</div> 
 </body>
 </html>
