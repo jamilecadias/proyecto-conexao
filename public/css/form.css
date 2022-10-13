@@ -14,6 +14,11 @@
 
     
 /*FORMS*/
+section.section_register {
+    margin-bottom: 200px;
+    margin-top: -50px;
+}
+
 .form-container{
     width: 100%;
     padding: 15%; 
@@ -21,7 +26,7 @@
 
 .form{
     background: #f3f1f367 ;
-    margin-top: 150px;
+    /* margin-top: 50px; */
     padding: 3px;
     margin-bottom: 20px;
 }
@@ -30,6 +35,9 @@ h1{
     text-align: center;
     color: #1a2537;
     font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: -30px;
+    
 }
 
 input[type="text"],
@@ -133,5 +141,6 @@ main {
     text-align: center;
     padding: 5px 0px;
 }
+
 
 

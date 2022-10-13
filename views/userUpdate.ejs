@@ -5,16 +5,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bienvenidos</title>
         <link rel="icon" href="images/cone1.png">
+        <link rel="stylesheet" href="/css/styles.css">
         <link rel="stylesheet" href="/css/form.css">
         <link rel="stylesheet" href="static/ass/styles">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
         <script src="https://kit.fontawesome.com/2da8e91210.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <header class="header">
+            <nav>
+              <input type="checkbox" id="check">
+              <label for="check" class="checkbtn">
+                  <i class="fas fa-bars"></i>
+              </label>
+              <a href="#" class="enlace">
+                  <img src="images/cone.png" alt="" class="logo">
+              </a>
+              <ul>
+                <h2 class="dashboard-title">Detalle del usuario</h2>
+                  <!-- <li><a class="active" href="/">Inicio</a></li> -->
+                  <% if (locals.isLogged) { %> 
+                    <a href="/users/profile">HOLA <%= locals.userLogged.name %>!</a>
+                   <% } %>                  
+              </ul>
+          </nav>
+            </header>
         <form class="form" method="POST" action="/edit/<%= users.id %>" enctype="multipart/form-data">
     
             <h1>Editar usuario</h1>
-            <div class="container">
+            <div class="form-container">
                 
                 <div class="input-container">
                 <i class="fas fa-user icon" ></i>

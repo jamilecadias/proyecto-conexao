@@ -11,15 +11,12 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
         <script src="https://kit.fontawesome.com/2da8e91210.js" crossorigin="anonymous"></script>
     </head>
-    <body>
-        
-         <%-include('./partials/header.ejs') %> 
+    <body>    
+     <%-include('./partials/header.ejs') %> 
          <section class="section_register">
         <form class="form" method="POST" action="/register" enctype="multipart/form-data">
-    
             <h1>Registrate</h1>
             <div class="form-container">
-                
                 <div class="input-container">
                 <i class="fas fa-user icon" ></i>
                 <input type="text" name="full_name" placeholder="Nombre completo" value="<%= locals.oldData ? oldData.full_name : "" %>">
