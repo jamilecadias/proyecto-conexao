@@ -14,51 +14,51 @@
     <body>    
      <%-include('./partials/header.ejs') %> 
          <section class="section_register">
-        <form class="form" method="POST" action="/register" enctype="multipart/form-data">
+        <form class="form" id="registerForm" method="POST" action="/register" enctype="multipart/form-data">
             <h1>Registrate</h1>
             <div class="form-container">
                 <div class="input-container">
                 <i class="fas fa-user icon" ></i>
-                <input type="text" name="full_name" placeholder="Nombre completo" value="<%= locals.oldData ? oldData.full_name : "" %>">
+                <input type="text" id="full_name" name="full_name" placeholder="Nombre completo" value="<%= locals.oldData ? oldData.full_name : "" %>">
                 </div>
                 <small style="color: red;" > <% if (locals.errors && errors.full_name) { %>
                     <%= errors.full_name.msg %>
                     <% } %>
-                </small>
+                </small> <small style="color: red ;" id="errorFullName" ></small>
                 <div class="input-container">
                 <i class="fa-solid fa-phone icon"></i>
-                <input type="tel" name="phone_number" placeholder="Teléfono" value="<%= locals.oldData ? oldData.phone_number : "" %>">
+                <input type="tel" id="phone_number" name="phone_number" placeholder="Teléfono" value="<%= locals.oldData ? oldData.phone_number : "" %>">
                 </div>
                 <small style="color: red;" > <% if (locals.errors && errors.phone_number) { %>
                     <%= errors.phone_number.msg %>
                     <% } %>
-                </small>
+                </small> <small style="color: red ;" id="errorPhoneNumber" ></small>
     
                 <div class="input-container">
                 <i class="fas fa-envelope icon"></i>
-                <input type="text" name="email" placeholder="Correo electrónico" value="<%= locals.oldData ? oldData.email : "" %>">
+                <input type="text" id="email" name="email" placeholder="Correo electrónico" value="<%= locals.oldData ? oldData.email : "" %>">
                 </div>
                 <small style="color: red;" > <% if (locals.errors && errors.email) { %>
                     <%= errors.email.msg %>
                     <% } %>
-                </small>
+                </small> <small style="color: red ;" id="errorEmail" ></small>
     
                 <div class="input-container">
                 <i class="fas fa-key icon"></i>
-                <input type="password" name="password" placeholder="Contraseña" value="<%= locals.oldData ? oldData.password : "" %>">
+                <input type="password" id="password" name="password" placeholder="Contraseña" value="<%= locals.oldData ? oldData.password : "" %>">
                 </div>
                 <small style="color: red;" > <% if (locals.errors && errors.password) { %>
                     <%= errors.password.msg %>
                     <% } %>
-                </small>
+                </small> <small style="color: red ;" id="errorPassword" ></small>
             
             <div class="profile-image">Elegí una foto de perfil:</label>
-            <input type="file" name="avatar" id="profile-mage" value="<%= locals.oldData ? oldData.avatar : "" %>">
+            <input type="file" id="avatar" name="avatar" id="profile-mage" value="<%= locals.oldData ? oldData.avatar : "" %>">
                 </div>
                 <small style="color: red;" > <% if (locals.errors && errors.avatar) { %>
                     <%= errors.avatar.msg %>
                     <% } %>
-                </small>
+                </small> <small style="color: red ;" id="errorAvatar" ></small>
                 <br>
                 <div class="profile">
                     <h4 class="user_profile">Perfil del usuario</h4>
@@ -70,7 +70,7 @@
                         <small style="color: red;"> <% if (locals.errors && errors.role) { %>
                             <%= errors.role.msg %>
                         <% } %> 
-                        </small>
+                        </small> <small style="color: red ;" id="errorRole" ></small>
                 </div>
                 <br>
                  <input type="submit" value="Registrate" class="button">
@@ -82,8 +82,7 @@
             </div>
         </form> 
          </section>
-        
         <%-include('./partials/footer.ejs') %>
-    
+        <script src="/js/userRegisterValidations.js"></script>
     </body>
 </html>
