@@ -6,6 +6,8 @@ const methodOverride =  require('method-override');
 const session = require('express-session');
 const publicPath= path.resolve(__dirname, './public')
 const apiRouter = require('./routes/apiRouter');
+const userLoggedMiddleware = require("./middlewares/userLoggedMiddleware");
+
 
 app.use(methodOverride('_method'));
 
@@ -20,6 +22,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
 })); 
+
+app.use(userLoggedMiddleware);
+
 
 app.set('view engine', 'ejs');
 
