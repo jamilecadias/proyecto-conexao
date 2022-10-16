@@ -15,8 +15,9 @@
     
 /*FORMS*/
 section.section_register {
-    margin-bottom: 200px;
+    /* margin-bottom: 300px; */
     margin-top: -50px;
+    margin-bottom: 80px;
 }
 
 .form-container{
@@ -24,11 +25,17 @@ section.section_register {
     padding: 15%; 
 }
 
+form#registerForm.form {
+    margin-bottom: 100px;
+
+}
+
 .form{
     background: #f3f1f367 ;
     /* margin-top: 50px; */
     padding: 3px;
     margin-bottom: 20px;
+    
 }
 
 h1{
@@ -97,7 +104,17 @@ p{
     color: cadetblue;
 }
 
-@media(min-width:768px)
+/* @media(min-width:768px)
+{
+    .form{
+        margin: auto;
+        width: 500px;
+        margin-top: 150px;
+        border-radius: 2%;
+    }
+}  */
+
+@media(min-width:480px)
 {
     .form{
         margin: auto;
@@ -113,10 +130,6 @@ main {
     display: grid;
     padding: 20px 10px;
 }
-
-/* #sectionForm{
-    background-color: rgb(136, 226, 226);
-} */
 
 .table-container {
     background-color: cadetblue;

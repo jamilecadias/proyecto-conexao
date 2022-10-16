@@ -13,11 +13,10 @@
     </head>
     <body>
         <%-include('./partials/header.ejs') %>
+         <section class="section_register">
         <form class="form" id="registerForm" method="POST" action="/edit/<%= users.id %>" enctype="multipart/form-data">
-    
             <h1>Editar usuario</h1>
             <div class="form-container">
-                
                 <div class="input-container">
                 <i class="fas fa-user icon" ></i>
                 <input type="text" id="full_name" name="full_name" placeholder="Nombre completo" value="<%= locals.oldData ? oldData.full_name : users.full_name %>">

@@ -5,7 +5,7 @@
     list-style: none;
     box-sizing: border-box;
 }
-
+/* Header  */
 
 nav{
   background: #1a2537;
@@ -104,10 +104,11 @@ section{
 /*FOOTER*/
 
 footer{
-  /*   position: absolute; */
+  position: relative;
     bottom: 0;
     width: 100%;
     background-color: #1a2537;
+    padding: 0%;
     
 }
 
