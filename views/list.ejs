@@ -13,23 +13,7 @@
     <script src="https://kit.fontawesome.com/2da8e91210.js" crossorigin="anonymous"></script>
 </head>
 <body>
-   <header class="header">
-        <nav>
-          <input type="checkbox" id="check">
-          <label for="check" class="checkbtn">
-              <i class="fas fa-bars"></i>
-          </label>
-          <a href="#" class="enlace">
-              <img src="images/conex.png" alt="" class="logo">
-          </a>
-          <ul>
-              <li><a class="active" href="/">Inicio</a></li>
-              <% if (locals.isLogged) { %> 
-                <a href="/users/profile">HOLA <%= locals.userLogged.name %>!</a>
-               <% } %>                  
-          </ul>
-      </nav>
-        </header> 
+    <%-include('./partials/header.ejs') %>
 <main>
 <section id="section-form">
     <form class="form" id="registerForm" method="POST" action="/users" enctype="multipart/form-data">
@@ -140,11 +124,6 @@
     </div>
 </section>
 </main>
-<!-- <div class="footer-bottom">
-    <center>
-        <div><span>Copyright 2022 © Todos los derechos reservados | Desarrollado por JCD</a></span></div>
-    </center>
-</div>  -->
 <script src="/js/userRegisterValidations.js"></script>
 </body>
 </html>
