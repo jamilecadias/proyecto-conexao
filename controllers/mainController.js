@@ -58,7 +58,7 @@ const Controller = {
 				return res.render('login', {
 					errors: {
 						email: {
-							msg: 'Los datos son incorrectos.'
+							msg: 'El email no se encuentra en la basse de datos.'
 						}
 					}
 				})
