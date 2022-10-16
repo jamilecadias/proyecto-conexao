@@ -234,6 +234,14 @@ const Controller = {
 			.catch(error => res.send(error)) 
 		},
 
+		//Para averiguar si un dato ingresado een el formulario se encuentra en la base de datos
+
+		findByUser:  (user) =>  db.User.findOne({
+            where: {
+                email: user
+            }
+        }),
+
         
 }
 module.exports = Controller;
