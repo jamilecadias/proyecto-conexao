@@ -193,7 +193,7 @@ const Controller = {
 						full_name: req.body.full_name,
 						phone_number: req.body.phone_number,
 						email: req.body.email,
-						password: req.body.password,
+						password: bcrypt.hashSync(req.body.password, 10),
 						avatar: req.file.filename,
 						role: req.body.role
 					},
