@@ -104,9 +104,18 @@ p{
 
 /*DASHBOARD TABLE*/
 
+.dash-title{
+    color: #1a2537;
+    font-size: xx-large;
+    padding: 20px;
+    background:#f3f1f367;
+  margin-bottom: -50px; 
+}
+
 main {
     display: grid;
     padding: 20px 10px;
+    margin-bottom: 200px;
 }
 h2 {
     text-align: center;
