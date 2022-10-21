@@ -105,7 +105,7 @@
                <tr>
                 <% for( let i = 0; i < users.length; i++ ) { %>
                  <th><a href="/profile/<%= users[i].id %>" class="fa-solid fa-user"></i></th>
-                  <th><form method="GET" action="/edit/<%= users[i].id %>" enctype="multipart/form-data">
+                  <th><form method="GET" action="/edit/<%= users[i].id %>">
                     <button type="submit" id="delete-button" class="fa-solid fa-pen"></button></form></th>
                   <th><form action='/destroy/<%= users[i].id %>?_method=DELETE' method="post">
                     <button type="submit" id="delete-button" class="fa-solid fa-trash-can"></button></form></th>

@@ -59,9 +59,9 @@ register: [
                 return true;
             }).bail()
             .custom((value, { req }) => {
-                let file = req.file.size;
+                let file = req.file && req.file.size;
                 const maxSize = 1 * 1024 * 1024;
-                if   (file >= maxSize) {
+                if   (!!file && file >= maxSize) {
                         throw new Error('El tamaño del archivo no puede ser mayor a 1MB');  
                 } 
                 return true;

@@ -40,9 +40,6 @@ const Controller = {
 					req.session.userLogged = user;
                     res.cookie('userEmail' , req.body.email, { maxAge: (1000 * 60) * 3 } ); 
 
-					/* if(req.body.recordarme) {
-						res.cookie('userEmail' , req.body.email, { maxAge: (1000 * 60) * 3 } ); 
-					} */
 				
 						return res.redirect('/profile')
 					} else {
@@ -148,26 +145,28 @@ const Controller = {
 		createAdmin: function (req,res) {
 			const resultValidation = validationResult(req);
 			if (resultValidation.errors.length > 0) {
-				return res.render('list', {
-					errors: resultValidation.mapped(),
-					oldData: req.body,
-					users: db.User.findAll()
-					.then(users => {
-						  res.render("list",{users:users});
-					   })
-				});
-			}
-			db.User.create({
+				db.User.findAll() .then(users =>{
+					res.render("list",{
+						errors: resultValidation.mapped(),
+						oldData: req.body,
+						users
+					} )
+				})
+				
+			} else {
+				db.User.create({
 				full_name: req.body.full_name,
 				phone_number: req.body.phone_number,
 				email: req.body.email,
 				password: bcrypt.hashSync(req.body.password, 10),
-				avatar: req.file.filename,
+				avatar: req.file ? req.file.filename: "",
 				role: req.body.role,
 			})
 				.then(function () {
 					res.redirect('/users')
 				})
+			}
+			
 			},
 
 			edit: (req, res) => {
@@ -227,8 +226,6 @@ const Controller = {
 			})
 			   // force: true es para asegurar que se ejecute la acción
 			.then(()=>{
-				res.clearCookie('userEmail'); 
-				req.session.destroy();
 				return res.redirect('/users')
 			})
 			.catch(error => res.send(error)) 
