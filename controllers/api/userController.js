@@ -2,13 +2,7 @@ const db = require("../../database/models");
 const Op = db.Sequelize.Op;
 const apiUserController = {
     list: (req, res) => {
-//         lastUser = db.User.findOne({
-//             order: [
-//                 ['id','DESC']
-//             ]
-//     }
-// )
-//         console.log(last)
+
         totals = db.User.findAll()
         .then(users => {
             totals=users.length

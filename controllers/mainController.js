@@ -94,23 +94,6 @@ const Controller = {
         res.render('register')
     }, 
 
-   /*  dashboard: (req, res)=>{
-        const total = fetch('http://localhost:3000/api/users')
-        .then(response => response.json())
-        // .then(users => {
-        //  return res.render('dashboardApis',{users})
-        // })
-        const last = fetch('http://localhost:3000/api/users/last')
-        .then(response => response.json())
-        // .then(lastUser => {
-        //  return res.render('dashboardApis',{users,lastUser})
-        // })
-        const allData = Promise.all([total, last]);
-        allData.then(users => {
-            return res.render('dashboardApis',{users})
-        })
-        // allData.then((res) => console.log(res));
-    }, */
     userUpdate: (req, res)=>{
         res.render('userUpdate')
     },
@@ -118,25 +101,15 @@ const Controller = {
     list: (req, res) => {
 		const total = fetch('http://localhost:3000/api/users')
         .then(response => response.json())
-        // .then(users => {
-        //  return res.render('dashboardApis',{users})
-        // })
+        
         const last = fetch('http://localhost:3000/api/users/last')
         .then(response => response.json())
-        // .then(lastUser => {
-        //  return res.render('dashboardApis',{users,lastUser})
-        // })
+        
         const allData = Promise.all([total, last]);
         allData.then(users => {
             return res.render('list',{users})
         })
-        /* db.User.findAll()
-        .then(users => {
-              res.render("list",{users:users});
-           })
-           .catch(err => {
-              return res.send(err)
-           }) */
+        
      },
      //Para poblar la base de datos con los registrados por formulario
      create: function (req,res) {
@@ -227,7 +200,7 @@ const Controller = {
 								if (users.role == "admin") {
 									res.redirect('/users')
 								} else {
-								res.redirect('/profile')
+								res.redirect('/users')
 							}
 							})
 					} else {
@@ -249,7 +222,7 @@ const Controller = {
 								if (users.role == "admin") {
 									res.redirect('/users')
 								} else {
-								res.redirect('/profile')
+								res.redirect('/users')
 							}
 							})}
 				})
