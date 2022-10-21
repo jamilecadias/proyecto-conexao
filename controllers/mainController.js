@@ -90,7 +90,7 @@ const Controller = {
         res.render('register')
     }, 
 
-    dashboard: (req, res)=>{
+   /*  dashboard: (req, res)=>{
         const total = fetch('http://localhost:3000/api/users')
         .then(response => response.json())
         // .then(users => {
@@ -106,19 +106,33 @@ const Controller = {
             return res.render('dashboardApis',{users})
         })
         // allData.then((res) => console.log(res));
-    },
+    }, */
     userUpdate: (req, res)=>{
         res.render('userUpdate')
     },
     //Para listar los usuarios
     list: (req, res) => {
-        db.User.findAll()
+		const total = fetch('http://localhost:3000/api/users')
+        .then(response => response.json())
+        // .then(users => {
+        //  return res.render('dashboardApis',{users})
+        // })
+        const last = fetch('http://localhost:3000/api/users/last')
+        .then(response => response.json())
+        // .then(lastUser => {
+        //  return res.render('dashboardApis',{users,lastUser})
+        // })
+        const allData = Promise.all([total, last]);
+        allData.then(users => {
+            return res.render('list',{users})
+        })
+        /* db.User.findAll()
         .then(users => {
               res.render("list",{users:users});
            })
            .catch(err => {
               return res.send(err)
-           })
+           }) */
      },
      //Para poblar la base de datos con los registrados por formulario
      create: function (req,res) {
@@ -179,31 +193,62 @@ const Controller = {
 				 })
 			},
 
+			//Proceso >> Edición de Usuario desde User o Admin
 			update: (req, res) => {
 				const resultValidation = validationResult(req);
-        if (resultValidation.errors.length > 0) {
-            return res.render('userUpdate', {
-                errors: resultValidation.mapped(),
-                users: req.body
-            });
-        }
-				db.User.update(
-					{
-						full_name: req.body.full_name,
-						phone_number: req.body.phone_number,
-						email: req.body.email,
-						password: bcrypt.hashSync(req.body.password, 10),
-						avatar: req.file.filename,
-						role: req.body.role
-					},
-					{
-					where: {
-						id: req.params.id
-					}, 
-					})
-					.then(()=>{
-						res.redirect('/profile')
-					})
+		if (resultValidation.errors.length > 0) {
+			return res.render('userUpdate', {
+				errors: resultValidation.mapped(),
+				users: req.body
+			});
+		}
+		db.User.findByPk(req.params.id)
+				.then(users => {
+					if (users.password == req.body.password ) {
+						db.User.update(
+							{
+								full_name: req.body.full_name,
+								phone_number: req.body.phone_number,
+								email: req.body.email,
+								password: req.body.password,
+								avatar: req.file.filename,
+								role: req.body.role
+							},
+							{
+							where: {
+								id: req.params.id
+							},
+							})
+							.then(()=>{
+								if (users.role == "admin") {
+									res.redirect('/users')
+								} else {
+								res.redirect('/profile')
+							}
+							})
+					} else {
+						db.User.update(
+							{
+								full_name: req.body.full_name,
+								phone_number: req.body.phone_number,
+								email: req.body.email,
+								password: bcrypt.hashSync(req.body.password, 10),
+								avatar: req.file.filename,
+								role: req.body.role
+							},
+							{
+							where: {
+								id: req.params.id
+							},
+							})
+							.then(()=>{
+								if (users.role == "admin") {
+									res.redirect('/users')
+								} else {
+								res.redirect('/profile')
+							}
+							})}
+				})
 			},
 
 		delete: (req, res) => {
@@ -242,3 +287,5 @@ const Controller = {
         
 }
 module.exports = Controller;
+
+

@@ -24,30 +24,34 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage : storage });
 
-
+//VISTA DE INICIO
 router.get('/', mainController.index);
 
-/* router.get('/register', mainController.create); */
-
+//REGISTRO
 router.get('/register',guestMiddleware, mainController.register);
 router.post('/register', upload.single('avatar'), validations.register, mainController.create);
 
+//INICIO DE SESIÓN
 router.get('/login', guestMiddleware, mainController.login);
 router.post('/login', validations.login, mainController.processLogin);
 
-router.get('/dashboard',adminMiddleware, mainController.dashboard);
+//DASHBOARD ADMIN
 router.get('/edit/:id', mainController.edit);
 router.post('/edit/:id',upload.single('avatar'), validations.edit,  mainController.update)
 router.get('/users', adminMiddleware, mainController.list);
 router.post('/users', upload.single('avatar'), validations.register, mainController.createAdmin);
+/* router.get('/dashboard',adminMiddleware, mainController.dashboard); */
 
+
+//VISTA DE PERFIL
 router.get('/profile',authMiddleware, mainController.profile);
 router.get('/profile/:id', mainController.profileById);
+
+//LOGOUT 
 router.get('/logout/', mainController.logout); 
+
+//BORRADO DE USUARIO
 router.delete('/delete/:id' , mainController.delete)
 router.delete('/destroy/:id' , mainController.destroyByID)
-
-
-
 
 module.exports = router;

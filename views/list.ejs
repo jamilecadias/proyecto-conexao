@@ -16,6 +16,46 @@
     <%-include('./partials/header.ejs') %>
     <h2 class="dash-title">Registro de usuarios</h2>
 <main>
+    <section id="section-form">
+        <form class="form" method="POST" action="/users" enctype="multipart/form-data">
+        
+            <h1>Total Usuarios <div><%= users[0].total%></div></h1>
+            </div> 
+        </form>
+    </section>
+    <section id="section-table">
+        <div class="table-container">
+            <h2>Último Usuario registrado</h2>
+            <table>
+                <thead>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th>Nombre Completo</th>
+                      <th>Teléfono</th>
+                      <th>Correo electrónico</th>
+                      <!-- <th>Contraseña</th> -->
+                      <th>Imagen</th>
+                      <th>Perfil</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyUsers">
+                   <tr>
+                    <th><a href="/profile/<%= users[1].data.id %>" class="fa-solid fa-user"></i></th>
+                        <th><a href="/edit/<%= users[1].data.id %>" class="fa-solid fa-pen"></i></th>
+                        <th><form action='/destroy/<%= users[1].data.id %>?_method=DELETE' method="post">
+                          <button type="submit" id="delete-button" class="fa-solid fa-trash-can"></button></form></th>
+                      <th><%= users[1].data.full_name%></th>
+                      <th><%= users[1].data.phone_number%></th>
+                      <th><%= users[1].data.email%></th>
+                      <th><img style="max-width: 30px;" src="/images/profile/<%=users[1].data.avatar%>"</th>
+                      <th><%= users[1].data.role%></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 <section id="section-form">
     <form class="form" id="registerForm" method="POST" action="/users" enctype="multipart/form-data">
     
@@ -103,18 +143,18 @@
             </thead>
             <tbody id="tbodyUsers">
                <tr>
-                <% for( let i = 0; i < users.length; i++ ) { %>
-                 <th><a href="/profile/<%= users[i].id %>" class="fa-solid fa-user"></i></th>
-                  <th><form method="GET" action="/edit/<%= users[i].id %>">
+                <% for( let i = 0; i < users[0].data.length; i++ ) { %>
+                 <th><a href="/profile/<%= users[0].data[i].id %>" class="fa-solid fa-user"></i></th>
+                  <th><form method="GET" action="/edit/<%= users[0].data[i].id %>">
                     <button type="submit" id="delete-button" class="fa-solid fa-pen"></button></form></th>
-                  <th><form action='/destroy/<%= users[i].id %>?_method=DELETE' method="post">
+                  <th><form action='/destroy/<%= users[0].data[i].id %>?_method=DELETE' method="post">
                     <button type="submit" id="delete-button" class="fa-solid fa-trash-can"></button></form></th>
-                  <th><%= users[i].full_name%></th>
-                  <th><%= users[i].phone_number%></th>
-                  <th><%= users[i].email%></th>
-                  <!-- <th><%= users[i].password%></th> -->
-                  <th><img style="max-width: 30px;" src="images/profile/<%= users[i].avatar%>"</th>
-                  <th><%= users[i].role%></th>
+                  <th><%= users[0].data[i].full_name%></th>
+                  <th><%= users[0].data[i].phone_number%></th>
+                  <th><%= users[0].data[i].email%></th>
+                  <!-- <th><%= users[0].data[i].password%></th> -->
+                  <th><img style="max-width: 30px;" src="images/profile/<%= users[0].data[i].avatar%>"</th>
+                  <th><%= users[0].data[i].role%></th>
                 </tr>
                 <% } %>
             </tbody>
