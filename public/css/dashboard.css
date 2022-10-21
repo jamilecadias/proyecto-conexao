@@ -59,6 +59,24 @@ div.input-container{
     color: #999;
 
 }
+a.fa-solid.fa-pen, a.fa-solid.fa-user, form{
+    color: #1a2537;
+   
+}
+
+button#delete-button.fa-solid.fa-trash{
+    background-color: cadetblue;
+    border-color: cadetblue;
+    color: #1a2537;
+    
+    
+}
+
+form{
+    background-color: cadetblue;
+    border-color: cadetblue;
+}
+
 .button {
     border: none;
     width: 100%;
@@ -137,6 +155,7 @@ h2 {
 .table-container > table, tr, td, th{
     border: 1px solid rgb(136, 135, 135);
     border-collapse: collapse;
+    padding: 5px;
     
 }
 
@@ -150,6 +169,10 @@ h2 {
     text-align: center;
     padding: 5px 0px;
     
+}
+ 
+img {
+    border-radius: 100%;
 }
 /*EXTRA SMALL DEVICES (PHONES)*/
 
