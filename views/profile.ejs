@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Perfil</title>
-        <link rel="icon" href="images/conexa.png">
+        <title>Bienvenidos</title>
+        <link rel="icon" href="images/conex.png">
         <link rel="stylesheet" href="/css/styles.css">
         <link rel="stylesheet" href="/css/profile.css">
         <link rel="stylesheet" href="static/ass/styles">
@@ -29,20 +29,30 @@
     <div class = "profileField">
         <p>Email: <%= user.email%> </p>
     </div>
+
+    <% if (locals.isLogged && locals.userLogged.role == 'user') { %>
     <div class="buttonContainer"> 
-    <div>
-        <form action='/logout' method="GET" style="display: inline-flex">
-            <button class="profileButton" type="submit" >Salir</button>
-        </form>
-    </div>
-    <div>
-        <form action='/edit/<%= user.id %>' method="get" style="display: inline-flex">
-            <button class="profileButton" type="submit" >Editar</button>
-        </form>
-        <!-- <form action='/delete/<%= user.id %>?_method=DELETE' method="post" style="display: inline-flex">
-            <button class="profileButton" type="submit" >Borrar</button>
-        </form> -->
-    </div>
+        <div>
+            <form action='/logout' method="GET" style="display: inline-flex">
+                <button class="profileButton" type="submit" >Salir</button>
+            </form>
+            <form action='/edit/<%= user.id %>' method="get" style="display: inline-flex">
+                <button class="profileButton" type="submit" >Editar</button>
+            </form>
+        </div>
+        <%} else { %>
+        <div>
+            <form action='/logout' method="GET" style="display: inline-flex">
+                <button class="profileButton" type="submit" >Salir</button>
+            </form>
+            <form action='/edit/<%= user.id %>' method="get" style="display: inline-flex">
+                <button class="profileButton" type="submit" >Editar</button>
+            </form>
+            <form action='/users' method="GET" style="display: inline-flex">
+                <button class="profileButton" type="submit" >Dashboard</button>
+            </form>
+        </div>
+        <% } %> 
     </div> 
 </main>
 <%-include('./partials/footer.ejs') %>
