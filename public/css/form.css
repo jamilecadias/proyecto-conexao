@@ -15,7 +15,10 @@
     
 /*FORMS*/
 section.section_register {
-    /* margin-bottom: 300px; */
+    margin-top: -50px;
+  /*   margin-bottom: 80px; */
+}
+section.section_login {
     margin-top: -50px;
     margin-bottom: 80px;
 }

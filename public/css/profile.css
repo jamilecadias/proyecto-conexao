@@ -58,7 +58,7 @@ button.profileButton {
     }
 
 button.profileButton:hover {
-        background: #a7c697;
+        background:  #ea972c;
         box-shadow: inset2px 2px 2px rgba(0,0,0.2);
         text-shadow: none;  
     }
