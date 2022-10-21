@@ -33,6 +33,7 @@ h1{
     text-align: center;
     color: #1a2537;
     font-size: 40px;
+    margin-top: 20px;
 }
 
 input[type="text"],
@@ -109,13 +110,13 @@ p{
     font-size: xx-large;
     padding: 20px;
     background:#f3f1f367;
-  margin-bottom: -50px; 
+    margin-bottom: -70px; 
 }
 
 main {
     display: grid;
     padding: 20px 10px;
-    margin-bottom: 200px;
+    margin-bottom: 50px;
 }
 h2 {
     text-align: center;
@@ -156,7 +157,17 @@ h2 {
     main{
         grid-template-columns: 1fr;
     }
+
 }
+
+@media only screen and (max-width: 767px) {
+    .dash-title{
+        margin-bottom: 20px;
+
+    }
+}
+
+
 
 /*SMALL DEVICES (PORTRAIT TABLETS AND LARGE PHONES)*/
 
