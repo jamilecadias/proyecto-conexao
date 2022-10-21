@@ -10,6 +10,10 @@ const Controller = {
 		return res.render('index');
 	},
 
+	maintenance: (req, res) => {
+		return res.render('maintenance');
+	},
+
     login: (req, res)=>{
         res.render('login')
     },

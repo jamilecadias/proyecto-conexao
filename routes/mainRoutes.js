@@ -27,6 +27,9 @@ const upload = multer({ storage : storage });
 //VISTA DE INICIO
 router.get('/', mainController.index);
 
+//VISTA DE MANTENIMIENTO
+router.get('/maintenance', mainController.maintenance);
+
 //REGISTRO
 router.get('/register',guestMiddleware, mainController.register);
 router.post('/register', upload.single('avatar'), validations.register, mainController.create);
